@@ -10,7 +10,9 @@
     "stream": "node opencode-stream-jsonl.mjs",
     "url-rag": "node opencode-url-rag.mjs",
     "url-rag-chunked": "node opencode-url-rag-chunked.mjs",
-    "langgraph-demo": "node langgraph-opencode-demo.mjs"
+    "langgraph-demo": "node langgraph-opencode-demo.mjs",
+    "langgraph-sdk-demo": "node langgraph-opencode-sdk-demo.mjs",
+    "test:langgraph-sdk": "node test-langgraph-opencode-sdk.mjs"
   },
   "dependencies": {
     "@langchain/langgraph": "^0.2.74"
