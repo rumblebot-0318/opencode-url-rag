@@ -12,6 +12,8 @@ Small experiments for using OpenCode with free models, SDK calls, JSON event str
 - `langgraph-opencode-demo.mjs` — minimal LangGraph orchestration demo where LangGraph coordinates and an OpenCode skill would own domain logic
 - `langgraph-opencode-sdk-demo.mjs` — LangGraph node that actually calls OpenCode SDK as a skill-like worker and requests structured JSON citations with evidence paths
 - `test-langgraph-opencode-sdk.mjs` — simple executable test for the SDK-backed LangGraph demo
+
+- `langgraph-retriever-opencode-demo.mjs` — LangGraph demo that consumes retriever-shaped output and passes it to an OpenCode grounded answer skill
 - `LANGGRAPH_OPENCODE_SPLIT.md` — guide for what belongs in LangGraph vs OpenCode Skills
 
 ## Default model
@@ -39,6 +41,7 @@ node opencode-url-rag-chunked.mjs --url https://example.com "이 문서를 자�
 node langgraph-opencode-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 node langgraph-opencode-sdk-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 node test-langgraph-opencode-sdk.mjs
+node langgraph-retriever-opencode-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 ```
 
 ## Notes

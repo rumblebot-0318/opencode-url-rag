@@ -12,7 +12,8 @@
     "url-rag-chunked": "node opencode-url-rag-chunked.mjs",
     "langgraph-demo": "node langgraph-opencode-demo.mjs",
     "langgraph-sdk-demo": "node langgraph-opencode-sdk-demo.mjs",
-    "test:langgraph-sdk": "node test-langgraph-opencode-sdk.mjs"
+    "test:langgraph-sdk": "node test-langgraph-opencode-sdk.mjs",
+    "langgraph-retriever-demo": "node langgraph-retriever-opencode-demo.mjs"
   },
   "dependencies": {
     "@langchain/langgraph": "^0.2.74"
