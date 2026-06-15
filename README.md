@@ -47,3 +47,23 @@ node test-langgraph-opencode-sdk.mjs
 - `opencode run --format json` works as a practical streaming fallback.
 - URL RAG scripts here are lightweight context injection, not a full vector database pipeline.
 - The LangGraph demo is intentionally thin: orchestration in LangGraph, domain logic in OpenCode Skills.
+
+
+## Chroma retriever plugin draft
+
+Added a draft OpenCode plugin retriever at:
+
+- `opencode-plugin/chroma-retriever.ts`
+
+It demonstrates:
+- local embeddings via `@xenova/transformers`
+- Chroma query using `queryEmbeddings`
+- notebook scoping via metadata filter
+- structured retrieval output with `context`, `sources`, and citation `path`
+
+## Final answer skill example
+
+Added examples for a grounded answer writer:
+
+- `examples/final-answer-skill-schema.json`
+- `examples/final-answer-skill-prompt.md`
