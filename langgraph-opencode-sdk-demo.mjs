@@ -43,8 +43,11 @@ async function invokeOpenCodeSkill(state) {
     const prompt = [
       'You are an OpenCode skill named grounded_answer_writer.',
       'Answer in Korean using ONLY the retrieved evidence.',
-      'Return concise JSON matching this shape:',
-      '{"answer":"...","citations":[{"docId":"...","page":1}],"confidence":0.0}',
+      'Return concise JSON matching this exact shape:',
+      '{"answer":"...","citations":[{"docId":"...","page":1,"path":"demo-doc/p1","quote":"..."}],"confidence":0.0}',
+      'Every citation must include a path field showing the evidence route/path.',
+      'Use path format like: <docId>/p<page>.',
+      'Include a short quote for each citation when possible.',
       'If evidence is weak, still answer briefly and set lower confidence.',
       '',
       `retrievalMode: ${state.retrievalMode}`,
@@ -66,7 +69,7 @@ async function invokeOpenCodeSkill(state) {
     } catch {
       parsed = {
         answer: text,
-        citations: (state.retrieved || []).map(x => ({ docId: x.docId, page: x.page })),
+        citations: (state.retrieved || []).map(x => ({ docId: x.docId, page: x.page, path: `${x.docId}/p${x.page}`, quote: x.text.slice(0, 120) })),
         confidence: 0.5,
       }
     }

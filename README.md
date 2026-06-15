@@ -10,7 +10,7 @@ Small experiments for using OpenCode with free models, SDK calls, JSON event str
 - `opencode-url-rag.mjs` — fetch one URL and answer from extracted text
 - `opencode-url-rag-chunked.mjs` — chunk long URL content and summarize with multi-step SDK calls
 - `langgraph-opencode-demo.mjs` — minimal LangGraph orchestration demo where LangGraph coordinates and an OpenCode skill would own domain logic
-- `langgraph-opencode-sdk-demo.mjs` — LangGraph node that actually calls OpenCode SDK as a skill-like worker
+- `langgraph-opencode-sdk-demo.mjs` — LangGraph node that actually calls OpenCode SDK as a skill-like worker and requests structured JSON citations with evidence paths
 - `test-langgraph-opencode-sdk.mjs` — simple executable test for the SDK-backed LangGraph demo
 - `LANGGRAPH_OPENCODE_SPLIT.md` — guide for what belongs in LangGraph vs OpenCode Skills
 

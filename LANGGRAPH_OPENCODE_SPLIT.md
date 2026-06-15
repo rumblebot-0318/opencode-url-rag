@@ -110,11 +110,23 @@ Skill은 자연어만 던지지 말고 가능하면 구조화해서 반환한다
 {
   "answer": "최종 답변",
   "citations": [
-    { "docId": "hani-1263449", "page": 1, "quote": "..." }
+    {
+      "docId": "hani-1263449",
+      "page": 1,
+      "path": "hani-1263449/p1",
+      "quote": "..."
+    }
   ],
   "confidence": 0.82
 }
 ```
+
+`path` 필드는 citation이 어떤 evidence 경로를 따라왔는지 보여주는 용도다. 최소 규칙은 다음처럼 잡는 걸 추천한다.
+
+- 문서 단위: `docId`
+- 페이지 단위: `docId/p12`
+- 섹션까지 있으면: `docId/p12#section-slug`
+- chunk까지 있으면: `docId/p12#chunk-3`
 
 ---
 
