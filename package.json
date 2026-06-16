@@ -15,9 +15,14 @@
     "test:langgraph-sdk": "node test-langgraph-opencode-sdk.mjs",
     "langgraph-retriever-demo": "node langgraph-retriever-opencode-demo.mjs",
     "ingest:url": "node cli/ingest-url-to-chroma.mjs",
-    "rag:demo": "node cli/run-rag-demo.mjs"
+    "rag:demo": "node cli/run-rag-demo.mjs",
+    "db:schema": "echo \"Apply sql/pgvector-schema.sql manually or via psql\"",
+    "ingest:pg": "node cli/ingest-url-to-postgres.mjs",
+    "rag:pg": "node cli/run-rag-demo-postgres.mjs"
   },
   "dependencies": {
-    "@langchain/langgraph": "^0.2.74"
+    "@langchain/langgraph": "^0.2.74",
+    "chromadb": "^3.4.3",
+    "pg": "^8.21.0"
   }
 }

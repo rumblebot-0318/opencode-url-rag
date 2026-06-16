@@ -17,6 +17,10 @@ Small experiments for using OpenCode with free models, SDK calls, JSON event str
 
 - `cli/ingest-url-to-chroma.mjs` — fetch a URL, chunk it, embed it, and store it in Chroma
 - `cli/run-rag-demo.mjs` — retrieve from Chroma and send grounded context to OpenCode SDK
+- `cli/ingest-url-to-postgres.mjs` — fetch a URL, chunk it, embed it, and store it in Postgres/pgvector
+- `cli/run-rag-demo-postgres.mjs` — retrieve from Postgres/pgvector and send grounded context to OpenCode SDK
+- `opencode-plugin/pgvector-retriever.ts` — Postgres/pgvector retriever for OpenCode plugin flow
+- `sql/pgvector-schema.sql` — minimal pgvector schema for chunk storage
 - `LANGGRAPH_OPENCODE_SPLIT.md` — guide for what belongs in LangGraph vs OpenCode Skills
 
 ## Default model
@@ -47,6 +51,10 @@ node test-langgraph-opencode-sdk.mjs
 node langgraph-retriever-opencode-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 npm run ingest:url -- --url https://example.com --notebook demo
 npm run rag:demo -- --notebook demo "이 문서를 요약해줘"
+export DATABASE_URL=postgres://user:pass@host:5432/dbname
+psql "$DATABASE_URL" -f sql/pgvector-schema.sql
+npm run ingest:pg -- --url https://example.com --notebook demo
+npm run rag:pg -- --notebook demo "이 문서를 요약해줘"
 ```
 
 ## Notes
@@ -75,3 +83,14 @@ Added examples for a grounded answer writer:
 
 - `examples/final-answer-skill-schema.json`
 - `examples/final-answer-skill-prompt.md`
+
+## Postgres / pgvector direction
+
+Chroma proved awkward on this Android/Termux environment, so the recommended path is now Postgres + pgvector.
+
+This repo now includes:
+- `sql/pgvector-schema.sql`
+- `opencode-plugin/pgvector-retriever.ts`
+- `cli/ingest-url-to-postgres.mjs`
+- `cli/run-rag-demo-postgres.mjs`
+- `lib/pg.js`
