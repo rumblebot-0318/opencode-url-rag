@@ -1,5 +1,51 @@
 # Current Architecture
 
+## System Diagram
+
+```text
+                       ┌──────────────────────────┐
+                       │        User / CLI        │
+                       └────────────┬─────────────┘
+                                    │
+                                    ▼
+                       ┌──────────────────────────┐
+                       │     Node.js Commands     │
+                       │  ingest / query / demos  │
+                       └────────────┬─────────────┘
+                                    │
+                    ┌───────────────┴────────────────┐
+                    │                                │
+                    ▼                                ▼
+        ┌──────────────────────┐         ┌──────────────────────┐
+        │    Web-style flow    │         │   Internal doc flow  │
+        │      OpenCode        │         │      LangGraph       │
+        │ search / reasoning   │         │ orchestration only   │
+        └──────────┬───────────┘         └──────────┬───────────┘
+                   │                                │
+                   ▼                                ▼
+        ┌──────────────────────┐         ┌──────────────────────┐
+        │  OpenCode SDK skill  │         │ pgvector retrieval   │
+        │ generation / extract │         │ context + sources    │
+        └──────────┬───────────┘         └──────────┬───────────┘
+                   │                                │
+                   └───────────────┬────────────────┘
+                                   ▼
+                       ┌──────────────────────────┐
+                       │  Structured JSON answer  │
+                       │ with citation paths      │
+                       └──────────────────────────┘
+
+Ingest side:
+
+  URL / PDF / text
+         │
+         ▼
+  chunking + embeddings
+         │
+         ▼
+  Postgres + pgvector
+```
+
 ## Goal
 
 Build a practical Node.js-based knowledge workflow around OpenCode SDK.
@@ -276,3 +322,21 @@ The current architecture is:
 - **LangGraph for orchestration of internal RAG flows**
 - **Postgres + pgvector for internal chunk storage**
 - **Structured JSON with citation paths as the answer contract**
+
+## Decision snapshot
+
+### Keep
+- OpenCode as generation / document reasoning layer
+- LangGraph as thin orchestrator
+- citation path requirement in grounded output
+- Node.js command-first workflow for early validation
+
+### Drop / de-prioritize
+- SSE as a core dependency
+- Chroma as the preferred backend on this machine
+- mixing live web search and internal vector retrieval in a single retrieval path
+
+### Prefer
+- OpenCode for web/live exploration
+- pgvector for stored internal knowledge
+- retriever output shape: `context + sources + empty`

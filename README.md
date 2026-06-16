@@ -2,6 +2,11 @@
 
 Small experiments for using OpenCode with free models, SDK calls, JSON event streaming, URL-based lightweight/chunked RAG, and LangGraph orchestration.
 
+## Architecture docs
+
+- [`CURRENT_ARCHITECTURE.md`](./CURRENT_ARCHITECTURE.md) — current end-to-end design and responsibility split
+- [`NEXT_STEPS.md`](./NEXT_STEPS.md) — near-term roadmap and validation checklist
+
 ## Included scripts
 
 - `examples-opencode-sdk.mjs` — minimal SDK example
