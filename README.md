@@ -14,6 +14,9 @@ Small experiments for using OpenCode with free models, SDK calls, JSON event str
 - `test-langgraph-opencode-sdk.mjs` — simple executable test for the SDK-backed LangGraph demo
 
 - `langgraph-retriever-opencode-demo.mjs` — LangGraph demo that consumes retriever-shaped output and passes it to an OpenCode grounded answer skill
+
+- `cli/ingest-url-to-chroma.mjs` — fetch a URL, chunk it, embed it, and store it in Chroma
+- `cli/run-rag-demo.mjs` — retrieve from Chroma and send grounded context to OpenCode SDK
 - `LANGGRAPH_OPENCODE_SPLIT.md` — guide for what belongs in LangGraph vs OpenCode Skills
 
 ## Default model
@@ -42,6 +45,8 @@ node langgraph-opencode-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 node langgraph-opencode-sdk-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
 node test-langgraph-opencode-sdk.mjs
 node langgraph-retriever-opencode-demo.mjs "이 문서의 핵심 쟁점을 요약해줘"
+npm run ingest:url -- --url https://example.com --notebook demo
+npm run rag:demo -- --notebook demo "이 문서를 요약해줘"
 ```
 
 ## Notes
