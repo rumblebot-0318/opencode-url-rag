@@ -33,12 +33,12 @@ That means:
 
 ---
 
-## Three modes
+## Two modes
 
-## 1. Web Mode
+## 1. Quick Search Mode
 
 ### Purpose
-For live / external / latest knowledge.
+For fast, user-friendly search and summarization.
 
 ### Examples
 - "오늘 나온 뉴스 정리해줘"
@@ -46,29 +46,45 @@ For live / external / latest knowledge.
 - "웹에서 여러 출처 비교해줘"
 
 ### Primary engine
-- **OpenCode direct web-oriented flow**
+- **OpenCode direct search / read / summarize flow**
 
 ### Why
-Web tasks are agentic:
-- reformulating search queries
-- following links
-- reading pages
-- selecting useful sources
-- comparing results
-
-This is better handled by OpenCode directly than by vector retrieval.
+This mode is meant to feel like an AI search summary:
+- fast answer first
+- lightweight source use
+- short synthesis over exhaustive grounding
+- better UX for broad questions and latest information
 
 ### Expected output
-- concise answer
-- optional structured JSON
-- citations if source metadata is available
+- short summary
+- concise bullets or paragraph
+- lightweight sources when available
+
+### Suggested base prompt
+
+```text
+You are a fast general knowledge assistant.
+
+You help users by:
+- searching and summarizing information quickly
+- giving short, useful answers
+- comparing sources at a high level
+
+Rules:
+- Be concise.
+- Prefer direct answers over long explanations.
+- Use available search/read tools when needed.
+- If uncertain, say so briefly.
+- Include lightweight source references when available.
+- Do not perform coding or developer-only tasks.
+```
 
 ---
 
-## 2. Vector Mode
+## 2. Grounded RAG Mode
 
 ### Purpose
-For stored internal knowledge.
+For evidence-backed answers from stored or retrieved knowledge.
 
 ### Examples
 - "저장된 문서에서 이 내용 찾아줘"
@@ -76,7 +92,7 @@ For stored internal knowledge.
 - "이 질문에 대해 내부 문서 근거로만 답해줘"
 
 ### Primary engine
-- **LangGraph orchestration**
+- **LangGraph orchestration (optional but recommended)**
 - **Postgres + pgvector retrieval**
 - **OpenCode final grounded answer generation**
 
@@ -128,34 +144,39 @@ Stored-document workflows need:
 }
 ```
 
+### Suggested base prompt
+
+```text
+You are a grounded knowledge assistant.
+
+You help users by:
+- answering from retrieved evidence
+- summarizing stored documents
+- providing citation-backed answers
+- returning structured JSON when requested
+
+Rules:
+- Use only the retrieved evidence when it is provided.
+- Do not infer beyond the evidence.
+- Include citations with path metadata when available.
+- If evidence is insufficient, say so clearly.
+- Do not perform coding or developer-only tasks.
+```
+
 ---
 
-## 3. Wiki Mode
+## Optional wiki workflow
 
-### Purpose
-For long-lived knowledge organization.
+Wiki generation and maintenance can still exist, but it is now treated as a supporting workflow rather than a first-class user mode.
 
-### Examples
-- "이 문서를 위키 항목으로 만들어줘"
-- "같은 주제 문서들을 합쳐서 요약 위키 만들어줘"
-- "새 자료를 기존 위키에 반영해줘"
+Use it for:
+- document wiki entry generation
+- topic wiki merge/update
+- long-lived knowledge compression
 
-### Primary engine
-- **OpenCode structured extraction / summarization flow**
-
-### Expected artifacts
-- document wiki entry
-- topic wiki entry
-- timeline
-- key points
-- open questions
-- source list / citation map
-
-### Why
-Wiki mode is about:
-- compressing source text into reusable knowledge
-- keeping a human-readable layer above evidence chunks
-- reducing repeated raw-document injection
+This keeps the main user-facing harness simple:
+- Quick Search
+- Grounded RAG
 
 ---
 
@@ -179,28 +200,19 @@ If coding must be allowed, it should happen in a separate developer harness.
 
 ---
 
-## Short base system prompt (candidate)
+## Harness summary
 
-```text
-You are a grounded knowledge assistant running inside an OpenCode harness.
+This harness now prefers two user-facing modes:
 
-You help users with:
-- answering questions
-- summarizing documents and URLs
-- retrieving information from stored knowledge
-- organizing knowledge into wiki-style notes
-- comparing sources
-- returning structured JSON when requested
+1. **Quick Search**
+   - speed-first
+   - broad search and summarization
+   - lightweight sources
 
-Rules:
-- Be concise and clear.
-- Prefer retrieval and evidence over guessing.
-- Use only the available tools and provided context.
-- Do not perform coding or developer-only tasks unless explicitly enabled.
-- When evidence is provided, answer only from that evidence.
-- Include citations when source metadata is available.
-- If uncertain, say so clearly.
-```
+2. **Grounded RAG**
+   - evidence-first
+   - retrieval + citation paths
+   - structured output supported
 
 ---
 
