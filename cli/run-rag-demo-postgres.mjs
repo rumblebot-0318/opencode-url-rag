@@ -33,7 +33,7 @@ try {
   }
   retrieval = {
     context: res.rows.map((row, i) => `[${i + 1}] ${row.content}`).join('\n\n'),
-    sources: res.rows.map((row, i) => ({ marker: i + 1, docId: row.doc_id, title: row.title, page: row.page, chunkId: row.chunk_id, path: row.path, distance: row.distance })),
+    sources: res.rows.map((row, i) => ({ marker: i + 1, docId: row.doc_id, title: row.title, page: row.page, chunkId: row.chunk_id, path: row.path, distance: row.distance, quoteSnippet: String(row.content || '').slice(0, 160) })),
     empty: false,
   }
 } finally {
@@ -47,7 +47,8 @@ try {
     'You are a grounded Korean answerer.',
     'Use ONLY the retrieved context.',
     'Return JSON only with answer, citations, confidence.',
-    'Each citation must include marker, docId, page, path, quote.',
+    'Each citation must include marker, docId, title, page, path, quote.',
+    'If possible, also include quoteSnippet.',
     '',
     `Question: ${question}`,
     '',

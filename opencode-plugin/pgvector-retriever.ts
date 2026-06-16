@@ -69,6 +69,7 @@ export default tool({
           chunkId: row.chunk_id,
           path: row.path,
           distance: row.distance,
+          quoteSnippet: String(row.content || '').slice(0, 160),
         }
       }))
 

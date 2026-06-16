@@ -1,0 +1,15 @@
+{
+  "answer": "이 문서의 핵심 쟁점은 핵 규제 강화와 단계적 제재 완화의 맞교환 구조다.",
+  "citations": [
+    {
+      "marker": 1,
+      "docId": "demo-doc",
+      "title": "Demo Article",
+      "page": 1,
+      "path": "demo-doc/p1#chunk-1",
+      "quote": "미국과 이란은 종전 MOU를 앞두고 핵 규제와 제재 완화 조건을 놓고 줄다리기를 벌이고 있다.",
+      "quoteSnippet": "핵 규제와 제재 완화 조건"
+    }
+  ],
+  "confidence": 0.82
+}

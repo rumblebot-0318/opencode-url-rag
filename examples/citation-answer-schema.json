@@ -1,0 +1,15 @@
+{
+  "answer": "최종 한국어 답변",
+  "citations": [
+    {
+      "marker": 1,
+      "docId": "demo-doc",
+      "title": "Demo Article",
+      "page": 1,
+      "path": "demo-doc/p1#chunk-1",
+      "quote": "근거가 되는 짧은 원문",
+      "quoteSnippet": "핵심 인용 일부"
+    }
+  ],
+  "confidence": 0.82
+}

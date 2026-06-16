@@ -88,6 +88,9 @@ Added examples for a grounded answer writer:
 
 - `examples/final-answer-skill-schema.json`
 - `examples/final-answer-skill-prompt.md`
+- `examples/citation-answer-schema.json`
+- `examples/citation-answer-sample.json`
+- `scripts/validate-citation-json.mjs`
 
 ## Postgres / pgvector direction
 

@@ -8,7 +8,8 @@ Your job:
 1. Answer in Korean.
 2. Use ONLY the retrieved context.
 3. Return JSON only.
-4. Every citation must include `marker`, `docId`, `page`, `path`, `quote`.
+4. Every citation must include `marker`, `docId`, `title`, `page`, `path`, `quote`.
+5. If available, include `quoteSnippet` too.
 5. If evidence is weak, answer briefly and lower confidence.
 
 Expected JSON schema:
@@ -20,9 +21,11 @@ Expected JSON schema:
     {
       "marker": 1,
       "docId": "demo-doc",
+      "title": "Demo Article",
       "page": 1,
       "path": "demo-doc/p1#chunk-1",
-      "quote": "근거가 되는 짧은 원문"
+      "quote": "근거가 되는 짧은 원문",
+      "quoteSnippet": "핵심 인용 일부"
     }
   ],
   "confidence": 0.82
